@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView, RefreshControl, ActivityIndicator } from 'react-native';
-// import { PermissionsAndroid } from 'react-native';
-// import Geolocation from 'react-native-geolocation-service';
 import BottomBar from '../components/BottomBar';
 import * as Location from 'expo-location';
 import data from '../data';
+import { useNavigation } from '@react-navigation/native';
 
 function HomeScreen({ navigation }) {
     const [refreshing, setRefreshing] = useState(false);
@@ -51,14 +50,12 @@ function HomeScreen({ navigation }) {
         const getLocationPermission = async () => {
             const { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                console.log('Permission to access location was denied');
                 setPharmacies([]);
                 return;
             }
 
             // Permission granted, now you can access location
             const location = await Location.getCurrentPositionAsync({});
-            console.log('User location:', location);
 
             // Calculate distance between user location and each pharmacy
             const pharmaciesInRange = data.filter(pharmacy => {
@@ -68,7 +65,6 @@ function HomeScreen({ navigation }) {
                     pharmacy.latitude,
                     pharmacy.longitude
                 );
-                console.log('Distance:', distance);
                 return distance <= 5; // 5 km range
             });
 
@@ -102,7 +98,7 @@ function HomeScreen({ navigation }) {
                 <View style={styles.content}>
                     {pharmacies.length > 0 ? (
                         pharmacies.map((pharmacy, index) => (
-                            <TouchableOpacity key={index} onPress={() => console.log('Card pressed')}>
+                            <TouchableOpacity key={index} onPress={() => handleCardPress(pharmacy)}>
                                 <View style={styles.card}>
                                     <Image source={{
                                         uri: pharmacy.images[0]
@@ -129,6 +125,7 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#333"
     },
     scrollViewContent: {
         flexGrow: 1,
@@ -144,6 +141,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderWidth: 1,
         marginBottom: 10,
+        backgroundColor:"#ddd"
     },
     image: {
         width: '100%',

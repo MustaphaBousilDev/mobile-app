@@ -1,4 +1,4 @@
-import { View, StyleSheet, TextInput, Button, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TextInput, Button, Text, Pressable , TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react'
 import { signup } from '../services/auth'
 import { useNavigation } from '@react-navigation/native';
@@ -56,12 +56,14 @@ function RegisterScreen() {
             <TextInput
                 style={styles.input}
                 placeholder="Name"
+                placeholderTextColor="#c6c6c6"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Email"
                 onChangeText={(text) => setEmail(text)}
                 value={email}
+                placeholderTextColor="#c6c6c6"
             />
             <TextInput
                 style={styles.input}
@@ -69,10 +71,14 @@ function RegisterScreen() {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                 secureTextEntry
+                placeholderTextColor="#c6c6c6"
             />
-            <Button
+            <Pressable
                 style={styles.Button}
-                title="Register" onPress={handleRegister} />
+                onPress={handleRegister}
+            >
+                <Text style={{ fontSize: 18, }}>register</Text>
+            </Pressable>
             {error && <Text style={styles.errorText}>{error}</Text>}
             <TouchableOpacity onPress={goToLogin}>
                 <Text style={styles.loginText}>Already have an account? <Text style={styles.blueText}>Login</Text></Text>
@@ -88,7 +94,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-        width: '100%'
+        width: '100%',
+        backgroundColor:'#333'
     },
     input: {
         width: '100%',
@@ -98,10 +105,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
         paddingHorizontal: 10,
+        color:"#fff"
     },
     title: {
         fontSize: 24,
         marginBottom: 20,
+        color:"#fff"
 
     },
     errorText: {
@@ -109,15 +118,24 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     Button: {
-        marginTop: 50,
-        marginBottom: 20,
+        width: '100%',
+        borderRadius: 10,
+        alignItems: 'center',
+        padding: 10,
+        marginVertical: 5,
+        backgroundColor: '#fff',
+        color: '#000',
+        textAlign: 'center',
     },
     loginText: {
         marginTop: 20,
         fontSize: 16,
+        color:"#fff",
     },
     blueText: {
-        color: 'blue',
+        color: '#fff',
+        textDecorationLine:'underline',
+        fontSize:12,
     },
 });
 

@@ -12,6 +12,8 @@ function LoginScreen() {
     const navigation = useNavigation();
 
     const handleLogin = async () => {
+        console.log(password)
+        console.log(email)
 
         try {
             const result = await login(email, password);
@@ -41,6 +43,7 @@ function LoginScreen() {
                 placeholder="Email"
                 onChangeText={(text) => setEmail(text)}
                 value={email}
+                placeholderTextColor="#c6c6c6"
             />
             <TextInput
                 style={styles.input}
@@ -48,6 +51,7 @@ function LoginScreen() {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                 secureTextEntry
+                placeholderTextColor="#c6c6c6"
             />
             {/* <Button
                 style={styles.Button}
@@ -75,7 +79,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-        width: '100%'
+        width: '100%',
+        backgroundColor:'#333'
     },
     input: {
         width: '100%',
@@ -85,10 +90,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
         paddingHorizontal: 10,
+        borderColor:'#fff',
+        color:"#fff",
+        placeholder:{
+            color:"#fff"
+        }
     },
     title: {
         fontSize: 24,
         marginBottom: 20,
+        color:'#fff'
 
     },
     errorText: {
@@ -101,20 +112,24 @@ const styles = StyleSheet.create({
     },
     Button: {
         width: '100%',
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: 'center',
-        padding: 15,
+        padding: 10,
         marginVertical: 5,
-        backgroundColor: '#C1F2B0',
-        color: 'black',
+        backgroundColor: '#fff',
+        color: '#000',
         textAlign: 'center',
+
     },
     loginText: {
         marginTop: 20,
         fontSize: 16,
+        color:'#FFF'
     },
     blueText: {
-        color: 'blue',
+        color: '#fff',
+        textDecorationLine:'underline',
+        fontSize:12,
     },
 });
 

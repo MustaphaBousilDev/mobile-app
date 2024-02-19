@@ -10,8 +10,8 @@ function PharmacyDetailsScreen({ route }) {
 
     const openMapApp = () => {
         const { latitude, longitude } = pharmacy;
-        // const url = `http://maps.apple.com/?ll=${latitude},${longitude}`; for iOS
-        const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`; // for Android 31.629754, -8.040264
+        const url = `http://maps.apple.com/?ll=${latitude},${longitude}`; 
+        //const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`; // for Android 31.629754, -8.040264
         Linking.openURL(url);
     };
 
@@ -25,7 +25,7 @@ function PharmacyDetailsScreen({ route }) {
                 <Text style={styles.hours}>Opening hours: {pharmacy.openingHours} - {pharmacy.closingHours}</Text>
             </View>
             <TouchableOpacity onPress={openMapApp} style={styles.mapButton}>
-                <FontAwesome name="map-marker" size={24} color="black" />
+                <FontAwesome name="map-marker" size={24} color="#fff" />
                 <Text style={styles.mapText}>View on Map</Text>
             </TouchableOpacity>
         </View>
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingHorizontal: 15,
         paddingVertical: 20,
+        backgroundColor:"#333"
     },
     image: {
         width: '100%',
@@ -51,27 +52,33 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 5,
+        color:"#fff"
     },
     address: {
         fontSize: 18,
         marginBottom: 5,
+        color:"#fff"
     },
     distance: {
         fontSize: 16,
         color: '#888',
         marginBottom: 5,
+        color:"#fff"
     },
     hours: {
         fontSize: 16,
         marginBottom: 5,
+        color:"#fff"
     },
     mapButton: {
         flexDirection: 'row',
         alignItems: 'center',
+        color:"#fff"
     },
     mapText: {
         fontSize: 20,
         marginLeft: 10,
+        color:"#fff"
     },
 });
 
